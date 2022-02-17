@@ -1,9 +1,12 @@
+require("dotenv").config();
+
 const express = require("express");
 const { DataTypes } =  require("sequelize")
 const app = express()
 const sequelize = require("./models/index").sequelize
 const  User = require("./models/user")
 
+const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
@@ -28,4 +31,4 @@ app.get("/get_user", async (req, res) => {
     return res.status(201).json({message: "success get all user", data: data})
 })
 
-app.listen(4000, console.log("listening at" + 4000))
+app.listen(port, console.log("listening at" + port))
